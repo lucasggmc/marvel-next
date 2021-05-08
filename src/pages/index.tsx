@@ -47,8 +47,10 @@ export default function Home({ comics }: HomeProps) {
       <div className={styles.cardsComic}>
         
         {
-          comics.map((comic, index) => {                        
-            <CardComic />                        
+          comics.map((comic, index) => {                                         
+            return (                    
+              <CardComic key={comic.id} thumbnail={comic.thumbnail} title={comic.title}/> 
+            );
           })
         }        
       </div>
