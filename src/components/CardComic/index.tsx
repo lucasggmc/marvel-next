@@ -54,11 +54,11 @@ export default function CardComic(props){
                 <div className={styles.cardContent}>
                     {/* <input type="checkbox" /> */}
                     <p>{props.title}</p>
-                    {/* <button type="button">
+                    <button type="button" onClick={showComicDetails}>
                         Details
-                    </button> */}
+                    </button>
                 </div>
-                <input type="checkbox" checked={isChecked} onChange={handleInputChange}/>
+                {/* <input type="checkbox" checked={isChecked} onChange={handleInputChange}/> */}
             </div>
 
             
@@ -66,8 +66,7 @@ export default function CardComic(props){
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 style={customStyles}
-                >
-                    {/* <div className={styles.containerModal} style={{backgroundImage: backgroundIMG, backgroundSize: 'cover'}}>                         */}
+                >                   
                     <div className={styles.containerModal} > 
                         <div>
                             <img src={srcIMG} alt="" className={styles.backgroundIMG}/>
@@ -76,16 +75,10 @@ export default function CardComic(props){
                             </button>
                         </div>
                         <div className={styles.infoModal}>
-                        <h2>{props.title} - {props.id}</h2>
-                        {/* <strong>{props.id}</strong> */}
-                        <p>{props.description}</p>
-                        </div>
-                    </div>
-
-                    {/* <div className={styles.footerModal}>
                         <h2>{props.title} - {props.id}</h2>                        
                         <p>{props.description}</p>
-                    </div>  */}
+                        </div>
+                    </div>                    
                 </Modal>
             
         </>

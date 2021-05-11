@@ -1,6 +1,3 @@
-.homepage{
-    
-}
 
 .searchBox {
     width: 100%;
@@ -11,7 +8,8 @@
 
     input{          
         height: 100%;        
-    
+        color: gray;
+
         display: flex;
         align-items: center;
         justify-content: center;
@@ -19,11 +17,7 @@
         padding-left: 1.8rem;
         border: 0;
         border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
-    
-        // background: rgb(73,83,184);
-        // background: linear-gradient(90deg, rgba(73,83,184,1) 0%, rgba(73,83,184,1) 30%, rgba(89,101,224,1) 100%);  
-        // color: #B3B9FF;         
+        border-bottom-left-radius: 5px;                   
 
         &:focus{
             outline: none;

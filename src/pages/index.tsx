@@ -29,20 +29,14 @@ type HomeProps = {
 
 export default function Home({ comics }: HomeProps) {
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [state, setState] = useState({
+    Comics: comics
+  });
 
-  //useEffect(() => {
-    // fetch(`https://gateway.marvel.com:443/v1/public/comics?format=comic&limit=1&apikey=${apiKey}`)
-    // .then(response => response.json())
-    // .then(data => console.log(data))        
-  //}, [])
-    
+  const inputRef = useRef<HTMLInputElement>(null);      
   
 
-   console.log('props', comics);
-
-  const [filter, setFilter] = useState('');
-  const [isCardDetailsModalOpen, setCardDetailsModalOpen] = useState(false)
+  const [filter, setFilter] = useState('');  
 
   function findComics(){
     let textSearched = inputRef.current.value;    
@@ -51,7 +45,7 @@ export default function Home({ comics }: HomeProps) {
   }
 
   return (
-    <div className={styles.homepage}>
+    <div>
       <Head>
         <title>MARVEL | Comics</title>
       </Head>      
@@ -72,9 +66,9 @@ export default function Home({ comics }: HomeProps) {
       <div className={styles.cardsComic}>
         
         {
-          comics.filter(comic => comic.title.toLowerCase().includes(filter) || filter === '').map((comic, index) => {                                         
+          state.Comics.filter(comic => comic.title.toLowerCase().includes(filter) || filter === '').map((comic, index) => {                                         
             return (                    
-              <div key={comic.id} onClick={() => setCardDetailsModalOpen(true)}>
+              <div key={comic.id}>
               <CardComic key={comic.id} images={comic.images} thumbnail={comic.thumbnail} title={comic.title} id={comic.id} description={comic.description} isSelected={comic.isSelected}/> 
               </div>
             );
@@ -92,24 +86,13 @@ export async function getServerSideProps() {
   const { data } = await api.get('comics', {
     params: {
       format: 'comic',
-      limit: 3  
-      //ts: ts,
-      //apikey: apiKey,  
-      //hash: hash    
+      limit: 3          
     }
-  })
+  })  
 
-  // const  data2  = await api.get('comics/292', {
-    
-  // })
-
-  // const teste = data2.data;
-
-  // console.log('teste', teste);
-
-  //console.log('datona', data.data.results);
   const comics = data.data.results.map(comic => {
     console.log('comicao', comic)
+    comic.isSelected = false    
 
     return {
       id: comic.id,
@@ -118,12 +101,11 @@ export async function getServerSideProps() {
       images: comic.images,
       urls: comic.urls,
       description: comic.description,
-      isSelected: false
+      isSelected: comic.isSelected
     };
 
   })
-  
-  
+    
     return {
     props: {
       comics: comics
