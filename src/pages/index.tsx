@@ -90,9 +90,7 @@ export async function getServerSideProps() {
     }
   })  
 
-  const comics = data.data.results.map(comic => {
-    console.log('comicao', comic)
-    comic.isSelected = false    
+  const comics = data.data.results.map(comic => {           
 
     return {
       id: comic.id,
@@ -101,7 +99,7 @@ export async function getServerSideProps() {
       images: comic.images,
       urls: comic.urls,
       description: comic.description,
-      isSelected: comic.isSelected
+      isSelected: false
     };
 
   })

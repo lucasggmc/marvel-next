@@ -4,9 +4,7 @@ import Modal from 'react-modal';
 
 import styles from './styles.module.scss'
 
-export default function CardComic(props){
-    console.log('thumbnail', props.thumbnail)
-    console.log('thumbnail', props.description)
+export default function CardComic(props){    
     const [modalIsOpen,setIsOpen] = useState(false);
 
     const backgroundIMG = `url(${props.thumbnail.path}.${props.thumbnail.extension})`
@@ -16,15 +14,15 @@ export default function CardComic(props){
         content : {
             border: 'none',
             background: 'var(--black)',
-            height : '500px',
-            width : '900px',
+            height: '500px',
+            width: '900px',
             padding: '0px',
-          top                   : '40%',
-          left                  : '50%',
-          right                 : 'auto',
-          bottom                : 'auto',
-          marginRight           : '-50%',
-          transform             : 'translate(-50%, -50%)'          
+            top: '40%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)'          
         }
       };    
 
@@ -43,8 +41,7 @@ export default function CardComic(props){
     const [isChecked, setIsChecked] = useState(false)
 
     function handleInputChange(){
-        setIsChecked(!isChecked);
-        props.isSelected = !isChecked;
+        setIsChecked(!isChecked);        
     }
 
     return (
