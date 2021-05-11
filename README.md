@@ -4,6 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 <p align="center">In this project an interface was developed to display some comics from the MARVEL API</p>
 
+This project is published here: https://marvel-next-psi.vercel.app/
 ## Getting Started
 
 First, run the development server:
