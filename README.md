@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Projeto React utilizando a MARVEL API
+## React project using the MARVEL API
 
 <p align="center">In this project an interface was developed to display some comics from the MARVEL API</p>
 
