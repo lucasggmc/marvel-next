@@ -40,7 +40,7 @@ export default function CardComic({comic}){
     const [isChecked, setIsChecked] = useState(false)
 
     function handleInputChange(){        
-        setIsChecked(!isChecked);    
+        setIsChecked(!isChecked);         
         comic.isSelected = !isChecked;             
     }
 
@@ -48,25 +48,18 @@ export default function CardComic({comic}){
         <>
             <div className={styles.cardContainer} style={{backgroundImage: backgroundIMG, backgroundSize: 'cover'}}>
 
-                <div className={styles.cardContent}>
-                    {/* <input type="checkbox" /> */}
-                    <p>{comic.title}</p>
-                    {/* <button type="button" onClick={showComicDetails}>
-                        Details
-                    </button> */}
+                <div className={styles.cardContent}>                                        
+                    <div onClick={handleInputChange} className={isChecked ? 'checked' : ''}> 
+                        <p>{comic.title}</p>                                               
+                    </div>
                 </div>
 
                 <div className={styles.details}>
                     <button type="button" onClick={showComicDetails}>
                         Details
                     </button>
-                </div>
-
-                <div className={styles.footerCard}>
-                    <input type="checkbox" checked={isChecked} onChange={handleInputChange}/>
-                </div>
+                </div>                
             </div>
-
             
                 <Modal
                 isOpen={modalIsOpen}

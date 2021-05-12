@@ -94,7 +94,7 @@ export default function Home({ comics }: HomeProps) {
       </div>
       
       <div className={styles.info}>
-        <p>You can select and send some comics by email!</p>
+        <p>You can select and send some comics by email!</p>        
       </div>
 
       <div className={styles.footerEmail}>       
