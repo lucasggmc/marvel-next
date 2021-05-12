@@ -35,8 +35,7 @@ require('dotenv').config()
 }
 
 //monta o body para o envio de e-mail
-function makeHTML(comics){
-    
+function makeHTML(comics){    
     let body = "";
 
     comics.map(comic => {
