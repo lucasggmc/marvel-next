@@ -51,7 +51,6 @@ export default function Home({ comics }: HomeProps) {
     axios.post(`/api/sendEmail`, {req: comicsToSend, email: email}).then(response => {
       console.log('response send', response);      
     });
-
   }
 
   function verifyComicsToSend(){  
