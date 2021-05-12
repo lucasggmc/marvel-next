@@ -4,11 +4,11 @@ import Modal from 'react-modal';
 
 import styles from './styles.module.scss'
 
-export default function CardComic(props){    
+export default function CardComic({comic}){    
     const [modalIsOpen,setIsOpen] = useState(false);
 
-    const backgroundIMG = `url(${props.thumbnail.path}.${props.thumbnail.extension})`
-    const srcIMG = `${props.thumbnail.path}.${props.thumbnail.extension}`
+    const backgroundIMG = `url(${comic.thumbnail.path}.${comic.thumbnail.extension})`
+    const srcIMG = `${comic.thumbnail.path}.${comic.thumbnail.extension}`
 
     const customStyles = {
         content : {
@@ -29,8 +29,7 @@ export default function CardComic(props){
     // Modal.setAppElement(document.getElementById('root'))
     Modal.defaultStyles.overlay.backgroundColor = 'rgb(0 0 0 / 82%)';
 
-    function showComicDetails(){
-        console.log("roiiii");
+    function showComicDetails(){        
         setIsOpen(true);
     }
 
@@ -40,8 +39,9 @@ export default function CardComic(props){
 
     const [isChecked, setIsChecked] = useState(false)
 
-    function handleInputChange(){
-        setIsChecked(!isChecked);        
+    function handleInputChange(){        
+        setIsChecked(!isChecked);    
+        comic.isSelected = !isChecked;             
     }
 
     return (
@@ -50,12 +50,21 @@ export default function CardComic(props){
 
                 <div className={styles.cardContent}>
                     {/* <input type="checkbox" /> */}
-                    <p>{props.title}</p>
+                    <p>{comic.title}</p>
+                    {/* <button type="button" onClick={showComicDetails}>
+                        Details
+                    </button> */}
+                </div>
+
+                <div className={styles.details}>
                     <button type="button" onClick={showComicDetails}>
                         Details
                     </button>
                 </div>
-                {/* <input type="checkbox" checked={isChecked} onChange={handleInputChange}/> */}
+
+                <div className={styles.footerCard}>
+                    <input type="checkbox" checked={isChecked} onChange={handleInputChange}/>
+                </div>
             </div>
 
             
@@ -72,8 +81,8 @@ export default function CardComic(props){
                             </button>
                         </div>
                         <div className={styles.infoModal}>
-                        <h2>{props.title} - {props.id}</h2>                        
-                        <p>{props.description}</p>
+                        <h2>{comic.title} - {comic.id}</h2>                        
+                        <p>{comic.description}</p>
                         </div>
                     </div>                    
                 </Modal>

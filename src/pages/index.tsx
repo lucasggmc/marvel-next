@@ -4,6 +4,8 @@ import CardComic from "../components/CardComic";
 import { Header } from "../components/Header";
 
 import { api } from '../service/api';
+import axios from 'axios';
+
 
 import styles from './home.module.scss';
 
@@ -33,15 +35,32 @@ export default function Home({ comics }: HomeProps) {
     Comics: comics
   });
 
-  const inputRef = useRef<HTMLInputElement>(null);      
-  
+  const [email, setEmail] = useState('')
 
+  const inputRef = useRef<HTMLInputElement>(null);        
   const [filter, setFilter] = useState('');  
 
   function findComics(){
     let textSearched = inputRef.current.value;    
 
     setFilter(textSearched)
+  }  
+
+  //chama o método que faz o envio de e-mail na API
+  function send(comicsToSend){    
+    axios.post(`/api/sendEmail`, {req: comicsToSend, email: email}).then(response => {
+      console.log('response send', response);      
+    });
+
+  }
+
+  function verifyComicsToSend(){  
+    if(email == '')
+      return;
+
+    const comicsSelected = state.Comics.filter(comic => comic.isSelected);
+    if(comicsSelected.length != 0)
+      send(comicsSelected);
   }
 
   return (
@@ -63,17 +82,31 @@ export default function Home({ comics }: HomeProps) {
         </button>
       </div>
 
-      <div className={styles.cardsComic}>
-        
+      <div className={styles.cardsComic}>        
         {
           state.Comics.filter(comic => comic.title.toLowerCase().includes(filter) || filter === '').map((comic, index) => {                                         
             return (                    
-              <div key={comic.id}>
-              <CardComic key={comic.id} images={comic.images} thumbnail={comic.thumbnail} title={comic.title} id={comic.id} description={comic.description} isSelected={comic.isSelected}/> 
+              <div key={comic.id}>              
+              <CardComic key={comic.id} comic={comic}/> 
               </div>
             );
           })
         }        
+      </div>
+      
+      <div className={styles.info}>
+        <p>You can select and send some comics by email!</p>
+      </div>
+
+      <div className={styles.footerEmail}>       
+        <input type="text" 
+        placeholder="Your best email" 
+        onChange={(e) => {setEmail(e.target.value)}}                  
+        />
+
+        <button type="button" onClick={verifyComicsToSend}>
+          Send!
+        </button>
       </div>
      
     </div>

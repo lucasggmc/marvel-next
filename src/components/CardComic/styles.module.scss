@@ -1,4 +1,5 @@
 .cardContainer{    
+    position: relative; // para alinhar o checkbox na parte inferior do card
     cursor: pointer;
     height: 28rem;
     width: 16rem;
@@ -25,9 +26,34 @@
 
             background-color: var(--red-dark);
             color: var(--white);
+        }                
+    }
+
+    .footerCard{        
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        input{
+            transform: scale(2);
+            padding: 5px;
+                    
+
+            position: absolute;        
+            bottom: 6px;
+            right: 6px;
         }
-        
-        button {            
+    }
+
+    .details{        
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        button{                         
+            position: absolute;        
+            bottom: 0px;    
+            
             background: var(--dark-blue);
             color: var(--white);
             font-family: Lexend, sans-serif;           
