@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+require('dotenv').config()
 
   export default function sendEmail(req, res){       
 
@@ -10,7 +11,7 @@ const nodemailer = require('nodemailer');
             pass: process.env.PASSMAIL  
         }, 
         secure: true
-    })
+    })    
 
     const comics = req.body.req
 
