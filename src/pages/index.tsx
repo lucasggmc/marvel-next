@@ -1,13 +1,15 @@
 import Head from 'next/head';
 import { useRef, useState } from 'react';
+
 import CardComic from "../components/CardComic";
 import { Header } from "../components/Header";
 
-import { api } from '../service/api';
 import axios from 'axios';
+import { api } from '../service/api';
 
-
+import { store } from 'react-notifications-component';
 import styles from './home.module.scss';
+
 
 type Comic = {
   id: number;
@@ -48,9 +50,12 @@ export default function Home({ comics }: HomeProps) {
 
   //chama o método que faz o envio de e-mail na API
   function send(comicsToSend){    
-    axios.post(`/api/sendEmail`, {req: comicsToSend, email: email}).then(response => {
-      console.log('response send', response);      
-    });
+    axios.post(`/api/sendEmail`, {req: comicsToSend, email: email}).then(response => {       
+      showNotification(200);    
+    }).catch(error => {             
+      showNotification(400); 
+    });    
+
   }
 
   function verifyComicsToSend(){  
@@ -60,6 +65,32 @@ export default function Home({ comics }: HomeProps) {
     const comicsSelected = state.Comics.filter(comic => comic.isSelected);
     if(comicsSelected.length != 0)
       send(comicsSelected);
+  }
+
+  function showNotification(status: number){
+    let title = "E-mail sent";
+    let message = "Check your inbox";
+    let type = "success";
+
+    if(status === 400){
+      title = "Email not sent";
+      message = "An error occurred sending email";
+      type = "danger";
+    }
+
+    store.addNotification({
+      title: title,
+      message: message,
+      type: type,
+      insert: "top",
+      container: "top-right",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 5000,
+        onScreen: true
+      }
+    });
   }
 
   return (

@@ -1,9 +1,7 @@
 const nodemailer = require('nodemailer');
 require('dotenv').config()
 
-  export default function sendEmail(req, res){       
-
-    console.log('teste', process.env.USERMAIL)
+  export default function sendEmail(req, res){           
 
     let transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
@@ -26,10 +24,12 @@ require('dotenv').config()
         text: "Hello world?", // plain text body
         html: htmlComics, // html body
       })
-      .then((response) =>{
+      .then((response) =>{               
+        res.status(200)
         res.send(response)
       })
-      .catch((error) =>{
+      .catch((error) =>{            
+        res.status(400)
         res.send(error)
       });
 }

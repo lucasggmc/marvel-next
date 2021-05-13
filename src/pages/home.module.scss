@@ -39,7 +39,24 @@
 
         border: 0;    
         border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;        
+        border-bottom-right-radius: 5px;     
+        
+        transition: filter(0.2s);
+
+        &:hover{
+            background: var(--white);      
+            
+            img{
+                filter: brightness(0.9) invert(0.99) sepia(1) saturate(4) hue-rotate(304deg);
+            }
+        }
+
+        // img{
+            
+        //     &:hover{
+        //         filter: brightness(0.6) invert(0.35) sepia(1) saturate(3) hue-rotate(100deg);
+        //     }
+        // }
     }
 }
 
@@ -99,6 +116,12 @@
         font-family: Lexend sans-serif; 
         padding: 10px;
         
+        transition: filter 0.9s;    
+
+        &:hover{
+            background: var(--white);
+            color: var(--red-dark);
+        }
     }
 }
 
@@ -112,8 +135,9 @@
 
     p{
         margin-top: 1rem;   
+        font-family: Lexend, sans-serif;        
         color: var(--white);
-        font-weight: 500;
-        font-family: Lexend sans-serif; 
+        font-size: 13px;
+        
     }
 }
