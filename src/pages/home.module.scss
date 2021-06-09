@@ -41,7 +41,8 @@
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;     
         
-        transition: filter(0.2s);
+        // transition: filter(0.2s);
+        transition: 0.5s; 
 
         &:hover{
             background: var(--white);      
@@ -116,7 +117,8 @@
         font-family: Lexend sans-serif; 
         padding: 10px;
         
-        transition: filter 0.9s;    
+        // transition: filter 0.9s; 
+        transition: 0.5s;   
 
         &:hover{
             background: var(--white);
